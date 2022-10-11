@@ -16,14 +16,27 @@ const opening = readline.question("Welcome to 1985.  You must defeat five Hair B
     }
 
 
-
-
 const userName = readline.question("May I have your name? ")
 console.log("Hello " + userName + "!")
 
 let player = {
     name: userName,
     hp: 100,
-    attackStrength: 50,
-    hairbandsDefeated: 0
+    hairbandsDefeated: 0,
+
 }
+
+let playerInventory = {
+    drumsticks: 0,
+    guitars: 0,
+    locksOfHair: 0,
+    bandanas: 0,
+    leatherVests: 0,
+    rockerMakeup: 0,
+}
+
+const hairBands = ["RATT", "Poison", "Skid Row", "Motley Crue", "Def Leppard", "GNR"]
+
+const hairBandSwag = ["Drumsticks", "Guitar", "Locks of Hair", "Bandana", "Leather Vest", "Rocker makeup" ]
+
+
