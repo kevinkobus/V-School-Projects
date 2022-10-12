@@ -1,42 +1,38 @@
 const readline = require("readline-sync")
 
-// Welcome console and name collection//
 
-const opening = readline.question("Welcome to 1985.  You must defeat five Hair Bands to make it to 1990.  If you'd like to continue, type: (Y) for Yes, (N) for No ")
+//Bands and swag
+const hairBands = ["RATT", "Poison", "Skid Row", "Motley Crue", "Def Leppard"]
+const hairBandSwag = ["Drumsticks", "Guitar", "Locks of Hair", "Bandana", "Leather Vest"]
 
-    if (opening === "y" || opening === "Y") {
-        console.log("Great! Let's go.")
-
-    } else if (opening === "n" || opening === "N") {
-        console.log("I don't blame you, mullets and tight pants are scary!")
+//Random algo 25% or 33%
 
 
-    } else {
-        console.log("Umm, that wasn't one of the options")
-    }
+
+//Run escape or get attacked chance
 
 
-const userName = readline.question("May I have your name? ")
-console.log("Hello " + userName + "!")
 
-let player = {
-    name: userName,
-    hp: 100,
-    hairbandsDefeated: 0,
 
+//Name collection and start of game
+const playerName = readline.question("Greetings, and welcome to 1985.  You must defeat five Hair Bands to escape the 1980's.  Please enter you name to continue. ")
+
+function startGame() {
+    console.log("Hello" + playerName + ", can you escape the 1980's without being rocked out of town by Hair Bands")
+    console.log("Your enemy Hair Bands are RATT, Poison, Skid Row, Motely Crue, and Def Leppard")
+    console.log("They've been rocking the 80's hard for years. Can you escape their sound and make it to an new musical decade?")
+    console.log("Good luck!")
 }
 
-let playerInventory = {
-    drumsticks: 0,
-    guitars: 0,
-    locksOfHair: 0,
-    bandanas: 0,
-    leatherVests: 0,
-    rockerMakeup: 0,
+function Player(name, hp, bandsDefeated, swagObtained) {
+    this.name = playerName;
+    this.hp = 10;
+    this.swagObtained = [];
 }
 
-const hairBands = ["RATT", "Poison", "Skid Row", "Motley Crue", "Def Leppard", "GNR"]
-
-const hairBandSwag = ["Drumsticks", "Guitar", "Locks of Hair", "Bandana", "Leather Vest", "Rocker makeup" ]
-
+function Band(bandName, bandHp, swag) {
+    this.bandName = bandName;
+    this.bandHp = bandHp;
+    this.swag = swag;
+}
 
