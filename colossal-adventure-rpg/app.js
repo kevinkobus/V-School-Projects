@@ -1,21 +1,18 @@
 const readline = require("readline-sync")
 
 
-//Bands and swag
+//***Bands and swag
 const hairBands = ["RATT", "Poison", "Skid Row", "Motley Crue", "Def Leppard"]
 const hairBandSwag = ["Drumsticks", "Guitar", "Locks of Hair", "Bandana", "Leather Vest"]
 
-//Random algo 25% or 33%
-
-
-
-//Run escape or get attacked chance
-
-
-
+//***Random algo
+function generateRandomNum(max) {
+    return Math.floor(Math.random() * Math.floor(max))
+}
+// console.log(generateRandomNum(10))
 
 //Name collection and start of game
-const playerName = readline.question("Greetings, and welcome to 1985.  You must defeat five Hair Bands to escape the 1980's.  Please enter you name to continue. ")
+const playerName = readline.question("Greetings, and welcome to 1985.  You must defeat three Hair Bands to escape the 1980's.  Please enter you name to continue. ")
 
 function startGame() {
     console.log("Hello" + playerName + ", can you escape the 1980's without being rocked out of town by Hair Bands")
@@ -24,7 +21,8 @@ function startGame() {
     console.log("Good luck!")
 }
 
-function Player(name, hp, bandsDefeated, swagObtained) {
+//Constructor functions for player and band objects
+function Player(name, hp, swagObtained) {
     this.name = playerName;
     this.hp = 10;
     this.swagObtained = [];
@@ -35,4 +33,37 @@ function Band(bandName, bandHp, swag) {
     this.bandHp = bandHp;
     this.swag = swag;
 }
+
+//Walk function
+function walk() {
+    let makeChoice = readline.keyIn("Would you like to: 'w' = walk Quit 'q' = quit, or 'p' = View your profile")
+
+    if (makeChoice === 'p') {
+        console.log(player)
+    }
+
+    else if (makeChoice === 'q') {
+        console.log("Lame")
+        //how do I make it exit the game?
+    }
+
+    else if (makeChoice === 'w') {
+        console.log("You're walking")
+        let encounterChance = generateRandomNum(4)
+        if (encounterChance === 2) {
+            return attack()
+        }
+        else if (encounterChance !== 2) {
+            console.log("There's lots of music being played nearby.  Maybe you should keep exploring to find it.")  
+            return walk()
+        }
+    }
+}
+
+//Attacking - running or escaping function
+// function attack() {
+
+// }
+
+
 
