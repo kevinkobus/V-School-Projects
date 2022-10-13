@@ -51,7 +51,7 @@ function walk() {
         console.log("You're walking")
         let encounterChance = generateRandomNum(4)
         if (encounterChance === 2) {
-            return attack()
+            return encounter()
         }
         else if (encounterChance !== 2) {
             console.log("There's lots of music being played nearby.  Maybe you should keep exploring to find it.")  
@@ -60,10 +60,12 @@ function walk() {
     }
 }
 
-//Attacking - running or escaping function
-// function attack() {
+//Encountering a band - atacking, running, or escaping function
+function encounter() {
+    let bandEncounter = readline.keyIn("You've encountered an 80's Hair Band. Would you like to: 'f' = fight, or 'r' = run and escape" )
 
-// }
+   
 
 
 
+}
