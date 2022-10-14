@@ -7,18 +7,18 @@ const readline = require("readline-sync")
 
 //***Random algo
 function generateRandomNum(max) {
-    return Math.floor(Math.random() * Math.floor(max))
+    return Math.floor(Math.random() * max)
 }
 // console.log(generateRandomNum(10))
 
 let alive = true
 
 //Name collection and start of game
-const playerName = readline.question("Greetings, and welcome to 1985.  \nHair Bands are abound wreaking havoc on the music scene and changing our culture. \nTheir musical sound and fashion are powerful forces that people can't resist.  \nYou must bash their music down the charts and make room for some new sounds.  \nThe challenge is yours!  \nPlease enter your name to continue. ")
+const name = readline.question("Greetings, and welcome to 1985.  \nHair Bands are abound wreaking havoc on the music scene and changing our culture. \nTheir musical sound and fashion are powerful forces that people can't resist.  \nYou must bash their music down the charts and make room for some new sounds.  \nThe challenge is yours!  \nPlease enter your name to continue. ")
 console.clear()
 
 function startGame() {
-    console.log("Hello " + playerName + ", can you escape the 1980's and make it to a new musical decade?")
+    console.log("Hello " + name + ", can you escape the 1980's and make it to a new musical decade?")
     console.log("Enemy Hair Bands are roaming the streets looking for their next victims.")
     console.log("They've been rocking the streets of the 80's hard for years.")
     console.log("Beware of their long flowing locks of hair and don't get tangled.")
@@ -26,11 +26,13 @@ function startGame() {
 }
 
 //Constructor functions for player and bands
-function Player(name, hp, swagObtained) {
-    this.name = playerName
+function Player() {
+    this.playerName = name
     this.hp = 100
     this.swagObtained = []
 }
+
+let activePlayer = new Player()
 
 // function Band(bandName, bandHp, swag) {
 //     this.bandName = bandName;
@@ -72,20 +74,20 @@ let defLeppard = {
 
 //Walk function
 function walk() {
-    let makeChoice = readline.keyIn("Would you like to: 'w' = walk Quit 'q' = quit, or 'p' = View your profile")
+    let makeChoice = readline.keyIn("Would you like to: 'w' = walk Quit 'q' = quit, or 'p' = View your profile ")
 
     if (makeChoice === 'p') {
-        console.log(player)
+        console.log(activePlayer)
     }
 
     else if (makeChoice === 'q') {
-        console.log("Too late to quit, just type w")
-        //how do I make it exit the game?
+        console.log("Are you seriously afraid of tight leather pants and mullets!? Just type w ")
+        //how do I make it exit the game if they quit?
     }
 
     else if (makeChoice === 'w') {
-        console.log("You're walking")
-        let encounterChance = generateRandomNum(4)
+        console.log("You're walking...")
+        let encounterChance = generateRandomNum(3)
         if (encounterChance === 2) {
             return encounter()
         }
@@ -97,10 +99,10 @@ function walk() {
 }
 
 //Encountering a band - atacking, running, or escaping function
-// function encounter() {
-//     let bandEncounter = readline.keyIn("You've encountered an 80's Hair Band. Would you like to: 'f' = fight, or 'r' = run and escape" )
+function encounter() {
+    let bandEncounter = readline.keyIn("You've encountered " + ratt.bandName + ". Would you like to: 'f' = fight, or 'r' = run and escape " )
 
-
+}
 
 
 
@@ -110,10 +112,3 @@ startGame()
 while (alive) {
     walk()
 }
-
-//Encountering a band - atacking, running, or escaping function
-// function encounter() {
-//     let bandEncounter = readline.keyIn("You've encountered an 80's Hair Band. Would you like to: 'f' = fight, or 'r' = run and escape" )
-
-
-// }
