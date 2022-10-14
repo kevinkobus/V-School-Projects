@@ -1,17 +1,9 @@
 const readline = require("readline-sync")
 
-
-//***Bands and swag
-// const hairBands = ["RATT", "Skid Row", "Poison", "Motley Crue", "Def Leppard"]
-// const hairBandSwag = ["Bandana", "Leather Vest", "Lock of Hair", "Guitar", "Drumstick"]
-
 //***Random algo
 function generateRandomNum(max) {
     return Math.floor(Math.random() * max)
 }
-// console.log(generateRandomNum(10))
-
-let alive = true
 
 //Name collection and start of game
 const name = readline.question("Greetings, and welcome to 1985.  \nHair Bands are abound wreaking havoc on the music scene and changing our culture. \nTheir musical sound and fashion are powerful forces that people can't resist.  \nYou must bash their music down the charts and make room for some new sounds.  \nThe challenge is yours!  \nPlease enter your name to continue. ")
@@ -26,7 +18,7 @@ function startGame() {
 }
 
 //Constructor functions for player and bands
-function Player() {
+function Player(playerName, hp, swagObtained) {
     this.playerName = name
     this.hp = 100
     this.swagObtained = []
@@ -40,37 +32,41 @@ let activePlayer = new Player()
 //     this.swag = swag;
 // }
 
-//Objects for bands so they can run in a sequence, have specific swag, and different hp's
-let ratt = {
-    bandName: "Ratt",
-    hp: 10,
-    swagItem: "Bandana"
-}
+// let rat = new Band("RATT", "10", "Bandana")
+// let skidRow = new Band("Skid Row", "15", "Leather Vest")
+// let poison = new Band("Poison", "25", "Lock of Hair")
+// let motleyCrue = new Band("Motley Crue", "30", "Guitar")
+// let defLeppard = new Band("Def Leppard", "35", "Drumstick")
 
-let skidRow = {
-    bandName: "Skid Row",
-    hp: 15,
-    swagItem: "Bandana"
-}
+let hairBands = [
+    {
+        name: "RATT",
+        hp: 10,
+        swag: "Bandana"
+    },
+    {
+        name: "Skid Row",
+        hp: 15,
+        swag: "Leather Vest"
+    },
+    {
+        name: "Poison",
+        hp: 25,
+        swag: "Lock of Hair"
+    },
+    {
+        name: "Motley Crue",
+        hp: 30,
+        swag: "Guitar"
+    },
+    {
+        name: "Def Leppard",
+        hp: 35,
+        swag: "Drumstick"
+    }
+]
 
-let poison = {
-    bandName: "Poison",
-    hp: 25,
-    swagItem: "Lock of Hair"
-}
-
-let motleyCrue = {
-    bandName: "Ratt",
-    hp: 30,
-    swagItem: "Guitar"
-}
-
-let defLeppard = {
-    bandName: "Ratt",
-    hp: 35,
-    swagItem: "Drumstick"
-}
-
+    let alive = true
 
 //Walk function
 function walk() {
@@ -100,10 +96,15 @@ function walk() {
 
 //Encountering a band - atacking, running, or escaping function
 function encounter() {
-    let bandEncounter = readline.keyIn("You've encountered " + ratt.bandName + ". Would you like to: 'f' = fight, or 'r' = run and escape " )
+    for (i = 0; i < hairBands.length; i++) {
+        console.log("You've encountered the band " + (hairBands[i]))
 
+
+
+        // let bandEncounter = readline.keyIn("You've encountered " + ratt.bandName + ". Would you like to: 'f' = fight, or 'r' = run and escape " )
+
+    }
 }
-
 
 
 
