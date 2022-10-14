@@ -12,12 +12,14 @@ function generateRandomNum(max) {
 // console.log(generateRandomNum(10))
 
 //Name collection and start of game
-const playerName = readline.question("Greetings, and welcome to 1985.  You must defeat three Hair Bands to escape the 1980's.  Please enter you name to continue. ")
+const playerName = readline.question("Greetings, and welcome to 1985.  \nHair Bands are abound wreaking havoc on the music scene and changing our culture. \nTheir musical sound and fashion are powerful forces that people can't resist.  \nYou must bash their music down the charts and make room for some new sounds.  \nThe challenge is yours!  \nPlease enter your name to continue. ")
+console.clear()
 
 function startGame() {
-    console.log("Hello" + playerName + ", can you escape the 1980's without being rocked out of town by Hair Bands")
-    console.log("Your enemy Hair Bands are RATT, Poison, Skid Row, Motely Crue, and Def Leppard")
-    console.log("They've been rocking the 80's hard for years. Can you escape their sound and make it to an new musical decade?")
+    console.log("Hello " + playerName + ", can you escape the 1980's and make it to a new musical decade?")
+    console.log("Enemy Hair Bands are roaming the streets looking for their next victims.")
+    console.log("They've been rocking the streets of the 80's hard for years.")
+    console.log("Beware of their long flowing locks of hair and don't get tangled.")
     console.log("Good luck!")
 }
 
@@ -60,12 +62,11 @@ function walk() {
     }
 }
 
+startGame()
+walk()
 //Encountering a band - atacking, running, or escaping function
-function encounter() {
-    let bandEncounter = readline.keyIn("You've encountered an 80's Hair Band. Would you like to: 'f' = fight, or 'r' = run and escape" )
-
-   
+// function encounter() {
+//     let bandEncounter = readline.keyIn("You've encountered an 80's Hair Band. Would you like to: 'f' = fight, or 'r' = run and escape" )
 
 
-
-}
+// }
