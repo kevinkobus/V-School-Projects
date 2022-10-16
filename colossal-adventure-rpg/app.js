@@ -32,6 +32,7 @@ function startGame() {
     console.log("They've been rocking the streets of the 80's hard for years.")
     console.log("Beware of their long flowing locks of hair and don't get tangled.")
     console.log("Good luck!")
+    walk()
 }
 
 let activePlayer = new Player()
@@ -69,7 +70,7 @@ function concert() {
     let bandName = hairBands[generateRandomNum(hairBands.length)]
     let swag = bandSwag[generateRandomNum(bandSwag.length)]
     let bandHp = (generateRandomNum(20) + 10)
-    let activeBand = new Band()
+    let activeBand = new Band(bandName, bandHp, swag)
 
     let bandEncounter = readline.keyIn("You've encountered " + activeBand.bandName + ". Would you like to: 'f' = fight, or 'r' = run and escape ")
     if (bandEncounter === 'f') {
