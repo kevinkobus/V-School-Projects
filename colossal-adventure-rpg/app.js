@@ -2,7 +2,7 @@ const readline = require("readline-sync")
 
 //***Random algo
 function generateRandomNum(max) {
-    return Math.floor(Math.random() * max)
+    return Math.floor(Math.random() * (max + 1))
 }
 
 //Name collection and start of game
@@ -21,21 +21,20 @@ function startGame() {
 function Player(playerName, hp, swagObtained, bandsVanquished) {
     this.playerName = name
     this.hp = 75
-    this.concertTickets = 0
+    this.swagObtained = []
     this.bandsVanquished = 0
 }
 
 let activePlayer = new Player()
 
-let hairBands = ["RATT", "Skid Row", "Poison", "Motley Crue", "Def Leppard"]
+const hairBands = ["RATT", "Skid Row", "Poison", "Motley Crue", "Def Leppard"]
+const bandSwag = ["Bandana", "Leather Vest", "Lock of Hair", "Guitar", "Drumstick"]
 
 function Band(bandName, bandHp, swag) {
-    this.bandName = name
-    this.bandHp = 30
+    this.bandName = bandName
+    this.bandHp = bandHp
     this.swag = swag
 }
-
-let activeBand = new Band()
 
 // let alive = true
 
@@ -77,49 +76,55 @@ function walk() {
 
 //Encountering a band function
 function concert() {
-    let bandName = hairBands[0].name
-    let bandEncounter = readline.keyIn("You've encountered " + bandName + ". Would you like to: 'f' = fight, or 'r' = run and escape ")
+    const bandName = hairBands[generateRandomNum(hairBands.length)]
+    const swag = bandSwag[generateRandomNum(bandSwag.length)]
+    let activeBand = new Band(bandName, 30, swag)
+    let bandEncounter = readline.keyIn("You've encountered " + activeBand + ". Would you like to: 'f' = fight, or 'r' = run and escape ")
     if (bandEncounter === 'f') {
         return fightBand()
     }
     else if (bandEncounter === 'r') {
         return run()
     }
-    hairBands.push(hairBands.shift())
 }
 
 
 function fightBand() {
-    while (bandName.hp > 0 && activePlayer.hp > 0) {
+    if (activeBand.hp > 0 && activePlayer.hp > 0) {
+        console.log("Here comes " + activeBand + " rockin' at you")
+        console.log("Boom, bang, smash, slam " + activeBand + " takes some damage")
+        activeBand.hp = activeBand.hp - generateRandomNum(15)
+        console.log(activeBand.hp)
 
-        console.log("Here comes " + bandName + " right at you")
-        console.log("Boom, bang, smash, slam " + bandName + " takes some damage")
-        bandName.hp = bandName.hp - generateRandomNum(15)
-        console.log(bandName.hp)
-
-        console.log(bandName + " fights back")
-        console.log("Crash, blam, boing, screetch!")
-        console.log("You've suffered some damage")
+        console.log(activeBand + " fights back")
+        console.log("Crash, blam, boing, screetch! You've suffered some damage")
         activePlayer.hp = activePlayer.hp - generateRandomNum(15)
         console.log(activePlayer.hp)
 
-        console.log("Here comes " + bandName + " back at you again")
+        console.log("Here comes " + activeBand + " rockin' at you again")
         console.log("You've both suffered some damage")
-        bandName.hp = bandName.hp - generateRandomNum(15)
+        activeBand.hp = activeBand.hp - generateRandomNum(15)
         activePlayer.hp = activePlayer.hp - generateRandomNum(15)
-        console.log(bandName.hp)
+        console.log(activeBand.hp)
         console.log(activePlayer.hp)
 
-        if (bandName.hp <= 0 && activePlayer.hp > 0) {
-            console.log("You've defeated " + bandName + " and gained some strenth back!")
+        if (activeBand.hp <= 0 && activePlayer.hp > 0) {
+            console.log("You've defeated " + activeBand + " and gained some strenth back!")
+            let bandsVanquished = bandsVanquished + 1
             activePlayer.hp = activePlayer.hp + 15
             console.log(activePlayer.hp)
-            console.log("You've also earned a piece of band swag---> " + bandName.swag)
-            activePlayer.swagObtained.push(bandName.swag)
-            console.log(activePlayer.swagObtained) 
-        }
-        
 
+            console.log("You've also earned a piece of band swag---> " + activeBand.swag)
+            activePlayer.swagObtained.push(activeBand.swag)
+            console.log(activePlayer.swagObtained)
+            return walk()
+        }
+
+        else {
+            console.log("You got out rocked!" + activePlayer.name + " You're now stuck in the 80's forever...unless you can find Dr. Emmett Brown's Delorean :)")
+            console.log("GAME OVER")
+            //How do you exit the game
+        }
     }
 
 }
