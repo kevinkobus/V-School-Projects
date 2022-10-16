@@ -18,55 +18,36 @@ function startGame() {
 }
 
 //Constructor functions for player and bands
-function Player(playerName, hp, swagObtained) {
+function Player(playerName, hp, swagObtained, bandsVanquished) {
     this.playerName = name
-    this.hp = 100
-    this.swagObtained = []
+    this.hp = 75
+    this.concertTickets = 0
+    this.bandsVanquished = 0
 }
 
 let activePlayer = new Player()
 
-// function Band(bandName, bandHp, swag) {
-//     this.bandName = bandName;
-//     this.bandHp = bandHp;
-//     this.swag = swag;
+let hairBands = ["RATT", "Skid Row", "Poison", "Motley Crue", "Def Leppard"]
+
+function Band(bandName, bandHp, swag) {
+    this.bandName = name
+    this.bandHp = 30
+    this.swag = swag
+}
+
+let activeBand = new Band()
+
+// let alive = true
+
+startGame()
+
+//     while (alive) {
+//     walk()
 // }
 
-// let rat = new Band("RATT", "10", "Bandana")
-// let skidRow = new Band("Skid Row", "15", "Leather Vest")
-// let poison = new Band("Poison", "25", "Lock of Hair")
-// let motleyCrue = new Band("Motley Crue", "30", "Guitar")
-// let defLeppard = new Band("Def Leppard", "35", "Drumstick")
-
-let hairBands = [
-    {
-        name: "RATT",
-        hp: 10,
-        swag: "Bandana"
-    },
-    {
-        name: "Skid Row",
-        hp: 15,
-        swag: "Leather Vest"
-    },
-    {
-        name: "Poison",
-        hp: 25,
-        swag: "Lock of Hair"
-    },
-    {
-        name: "Motley Crue",
-        hp: 30,
-        swag: "Guitar"
-    },
-    {
-        name: "Def Leppard",
-        hp: 35,
-        swag: "Drumstick"
-    }
-]
-
-    let alive = true
+while (activePlayer.hp > 0 && activePlayer.bandsVanquished < 3) {
+    walk()
+}
 
 //Walk function
 function walk() {
@@ -85,7 +66,7 @@ function walk() {
         console.log("You're walking...")
         let encounterChance = generateRandomNum(3)
         if (encounterChance === 2) {
-            return encounter()
+            return concert()
         }
         else if (encounterChance !== 2) {
             console.log("There's lots of music being played nearby.  Maybe you should keep exploring to find it.")
@@ -94,22 +75,68 @@ function walk() {
     }
 }
 
-//Encountering a band - atacking, running, or escaping function
-function encounter() {
-    for (i = 0; i < hairBands.length; i++) {
-        console.log("You've encountered the band " + (hairBands[i]))
+//Encountering a band function
+function concert() {
+    let bandName = hairBands[0].name
+    let bandEncounter = readline.keyIn("You've encountered " + bandName + ". Would you like to: 'f' = fight, or 'r' = run and escape ")
+    if (bandEncounter === 'f') {
+        return fightBand()
+    }
+    else if (bandEncounter === 'r') {
+        return run()
+    }
+    hairBands.push(hairBands.shift())
+}
 
 
+function fightBand() {
+    while (bandName.hp > 0 && activePlayer.hp > 0) {
 
-        // let bandEncounter = readline.keyIn("You've encountered " + ratt.bandName + ". Would you like to: 'f' = fight, or 'r' = run and escape " )
+        console.log("Here comes " + bandName + " right at you")
+        console.log("Boom, bang, smash, slam " + bandName + " takes some damage")
+        bandName.hp = bandName.hp - generateRandomNum(15)
+        console.log(bandName.hp)
 
+        console.log(bandName + " fights back")
+        console.log("Crash, blam, boing, screetch!")
+        console.log("You've suffered some damage")
+        activePlayer.hp = activePlayer.hp - generateRandomNum(15)
+        console.log(activePlayer.hp)
+
+        console.log("Here comes " + bandName + " back at you again")
+        console.log("You've both suffered some damage")
+        bandName.hp = bandName.hp - generateRandomNum(15)
+        activePlayer.hp = activePlayer.hp - generateRandomNum(15)
+        console.log(bandName.hp)
+        console.log(activePlayer.hp)
+
+        if (bandName.hp <= 0 && activePlayer.hp > 0) {
+            console.log("You've defeated " + bandName + " and gained some strenth back!")
+            activePlayer.hp = activePlayer.hp + 15
+            console.log(activePlayer.hp)
+            console.log("You've also earned a piece of band swag---> " + bandName.swag)
+            activePlayer.swagObtained.push(bandName.swag)
+            console.log(activePlayer.swagObtained) 
+        }
+        
+
+    }
+
+}
+
+function run() {
+    console.log("You're running....")
+    let escapeChance = generateRandomNum(2)
+    if (escapeChance === 2) {
+        console.log("You escaped! But you've lost some strength")
+        activePlayer.hp = activePlayer.hp - 5
+        return walk()
+    }
+    else if (escapeChance !== 2) {
+        console.log("There's no escape, you'll have to fight")
+        return fightBand()
     }
 }
 
 
 
-
-startGame()
-while (alive) {
-    walk()
-}
