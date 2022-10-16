@@ -32,7 +32,7 @@ const bandSwag = ["Bandana", "Leather Vest", "Lock of Hair", "Guitar", "Drumstic
 
 function Band(bandName, bandHp, swag) {
     this.bandName = bandName
-    this.bandHp = bandHp
+    this.bandHp = 30
     this.swag = swag
 }
 
@@ -78,8 +78,9 @@ function walk() {
 function concert() {
     const bandName = hairBands[generateRandomNum(hairBands.length)]
     const swag = bandSwag[generateRandomNum(bandSwag.length)]
-    let activeBand = new Band(bandName, 30, swag)
-    let bandEncounter = readline.keyIn("You've encountered " + activeBand + ". Would you like to: 'f' = fight, or 'r' = run and escape ")
+    let activeBand = new Band()
+    
+    let bandEncounter = readline.keyIn("You've encountered " + activeBand.bandName + ". Would you like to: 'f' = fight, or 'r' = run and escape ")
     if (bandEncounter === 'f') {
         return fightBand()
     }
@@ -90,26 +91,26 @@ function concert() {
 
 
 function fightBand() {
-    if (activeBand.hp > 0 && activePlayer.hp > 0) {
-        console.log("Here comes " + activeBand + " rockin' at you")
-        console.log("Boom, bang, smash, slam " + activeBand + " takes some damage")
-        activeBand.hp = activeBand.hp - generateRandomNum(15)
-        console.log(activeBand.hp)
+    if (activeBand.bandHp > 0 && activePlayer.hp > 0) {
+        console.log("Here comes " + activeBand.bandName + " rockin' at you")
+        console.log("Boom, bang, smash, slam " + activeBand.bandName + " takes some damage")
+        activeBand.bandHp = activeBand.bandHp - generateRandomNum(15)
+        console.log(activeBand.bandHp)
 
-        console.log(activeBand + " fights back")
+        console.log(activeBand.bandName + " fights back")
         console.log("Crash, blam, boing, screetch! You've suffered some damage")
         activePlayer.hp = activePlayer.hp - generateRandomNum(15)
         console.log(activePlayer.hp)
 
-        console.log("Here comes " + activeBand + " rockin' at you again")
+        console.log("Here comes " + activeBand.bandName + " rockin' at you again")
         console.log("You've both suffered some damage")
-        activeBand.hp = activeBand.hp - generateRandomNum(15)
+        activeBand.bandHp = activeBand.bandHp - generateRandomNum(15)
         activePlayer.hp = activePlayer.hp - generateRandomNum(15)
-        console.log(activeBand.hp)
+        console.log(activeBand.bandHp)
         console.log(activePlayer.hp)
 
-        if (activeBand.hp <= 0 && activePlayer.hp > 0) {
-            console.log("You've defeated " + activeBand + " and gained some strenth back!")
+        if (activeBand.bandHp <= 0 && activePlayer.hp > 0) {
+            console.log("You've defeated " + activeBand.bandName + " and gained some strenth back!")
             let bandsVanquished = bandsVanquished + 1
             activePlayer.hp = activePlayer.hp + 15
             console.log(activePlayer.hp)
