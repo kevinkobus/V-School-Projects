@@ -1,14 +1,22 @@
 const readline = require("readline-sync")
 
-//***Random algo
+//random algo
 function generateRandomNum(max) {
     return Math.floor(Math.random() * (max + 1))
 }
 
-//Constructor functions for player and bands
+//name collection and start of game
+const name = readline.question("Greetings, and welcome to 1985.  \nHair Bands are abound wreaking havoc on the music scene and changing our culture. \nTheir musical sound and fashion are powerful forces that people can't resist.  \nYou must bash their music down the charts and make room for some new sounds.  \nThe challenge is yours!  \nPlease enter your name to continue. ")
+console.clear()
+
+function startGame() {
+    console.log("Hello " + name + ", can you escape the 1980's and make it to a new musical decade?\nEnemy Hair Bands are roaming the streets looking for their next victims. \nThey've been rocking the streets of the 80's hard for years.\nBeware of their long flowing locks of hair and don't get tangled.\nGood luck!")
+    walk()
+}
+//constructor functions for player and bands
 function Player(playerName, hp, swagObtained, bandsVanquished) {
     this.playerName = name;
-    this.hp = 75;
+    this.hp = 200;
     this.swagObtained = [];
     this.bandsVanquished = 0
 }
@@ -24,30 +32,17 @@ function Band(bandName, bandHp, swag) {
     this.swag = swag
 }
 
-//Name collection and start of game
-const name = readline.question("Greetings, and welcome to 1985.  \nHair Bands are abound wreaking havoc on the music scene and changing our culture. \nTheir musical sound and fashion are powerful forces that people can't resist.  \nYou must bash their music down the charts and make room for some new sounds.  \nThe challenge is yours!  \nPlease enter your name to continue. ")
-console.clear()
-
-function startGame() {
-    console.log("Hello " + name + ", can you escape the 1980's and make it to a new musical decade?")
-    console.log("Enemy Hair Bands are roaming the streets looking for their next victims.")
-    console.log("They've been rocking the streets of the 80's hard for years.")
-    console.log("Beware of their long flowing locks of hair and don't get tangled.")
-    console.log("Good luck!")
-    console.clear()
-    walk()
-}
-
+//win game function
 function nineteenNinety() {
-    if(activePlayer.bandsVanquished = hairBands.length) {
+    if (activePlayer.bandsVanquished = hairBands.length) {
         console.log("Congrats! You've defeated all the Hair Bands and can now escape to a new musical decade")
         console.log(activePlayer)
         console.lof("Hair Bands will never go away though")
-        console.log("Rocket, yeah, satellite of love")  
+        console.log("Rocket, yeah, satellite of love")
     }
 }
 
-//Walk function
+//walk function
 function walk() {
     let makeChoice = readline.keyIn("Would you like to: 'w' = walk Quit 'q' = quit, or 'p' = View your profile ")
 
@@ -56,7 +51,7 @@ function walk() {
     }
 
     else if (makeChoice === 'q') {
-        console.log("Are you seriously afraid of tight leather pants and mullets!? Just type w ")
+        console.log("Are you seriously afraid of tight leather pants and mullets!? Just walk. ")
         //how do I make it exit the game if they quit?
     }
 
@@ -67,15 +62,15 @@ function walk() {
             return concert()
         }
         else if (encounterChance !== 2) {
-            console.log("There's lots of music being played nearby.  Maybe you should keep exploring to find it.")
+            console.log("There's lots of music being played around you.  Maybe you should keep exploring to find it.")
             return walk()
         }
     }
 }
 
-//Encountering a band function
+//encountering a band function
 function concert() {
-    //Activating a new band
+    //activating a new band
     let activeBand = new Band(bandName, bandHp, swag)
     let bandName = hairBands[generateRandomNum(hairBands.length)]
 
