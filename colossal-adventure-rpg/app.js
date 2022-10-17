@@ -21,7 +21,7 @@ function Player(playerName, hp, swagObtained, bandsVanquished) {
     this.bandsVanquished = 0
 }
 
-let activePlayer = new Player()
+const activePlayer = new Player()
 
 const hairBands = ["RATT", "Skid Row", "Poison", "Motley Crue", "Def Leppard"]
 const bandSwag = ["Bandana", "Leather Vest", "Lock of Hair", "Guitar", "Drumstick"]
@@ -34,7 +34,7 @@ function Band(bandName, bandHp, swag) {
 
 //win game function
 function nineteenNinety() {
-    if (activePlayer.bandsVanquished = hairBands.length) {
+    if (activePlayer.bandsVanquished === hairBands.length) {
         console.log("Congrats! You've defeated all the Hair Bands and can now escape to a new musical decade")
         console.log(activePlayer)
         console.lof("Hair Bands will never go away though")
@@ -48,10 +48,12 @@ function walk() {
 
     if (makeChoice === 'p') {
         console.log(activePlayer)
+        return walk()
     }
 
     else if (makeChoice === 'q') {
         console.log("Are you seriously afraid of tight leather pants and mullets!? Just walk. ")
+        return walk()
         //how do I make it exit the game if they quit?
     }
 
@@ -71,11 +73,10 @@ function walk() {
 //encountering a band function
 function concert() {
     //activating a new band
-    let activeBand = new Band(bandName, bandHp, swag)
     let bandName = hairBands[generateRandomNum(hairBands.length)]
-
     let swag = bandSwag[generateRandomNum(bandSwag.length)]
     let bandHp = (generateRandomNum(20) + 10)
+    const activeBand = new Band(bandName, bandHp, swag)
 
     let bandEncounter = readline.keyIn("You've encountered " + activeBand.bandName + ". Would you like to: 'f' = fight, or 'r' = run and escape ")
     if (bandEncounter === 'f') {
@@ -86,6 +87,7 @@ function concert() {
     }
 
     function fightBand() {
+        let battling = true
         while (battling) {
             //battling the band
             if (activeBand.bandHp > 0 && activePlayer.hp > 0) {
@@ -95,12 +97,13 @@ function concert() {
                 activePlayer.hp = activePlayer.hp - generateRandomNum(15)
                 console.log("Their hp remaining is " + activeBand.bandHp)
                 console.log("Your hp remaining is " + activePlayer.hp)
+                fightBand()
                 //continue battling
             }
             //defeat band
             if (activeBand.bandHp <= 0 && activePlayer.hp > 0) {
                 console.log("You've defeated " + activeBand.bandName + " and gained some strenth back!")
-                let bandsVanquished = bandsVanquished + 1
+                bandsVanquished = bandsVanquished + 1
                 activePlayer.hp = activePlayer.hp + 15
                 console.log("Your hp is now " + activePlayer.hp)
                 console.log("You've also earned a piece of band swag---> " + activeBand.swag)
