@@ -31,20 +31,13 @@ function Band(bandName, bandHp, swag) {
     this.bandHp = bandHp;
     this.swag = swag
 }
-
-//win game function
-function nineteenNinety() {
-    if (activePlayer.bandsVanquished === hairBands.length) {
-        console.log("Congrats! You've defeated all the Hair Bands and can now escape to a new musical decade")
-        console.log(activePlayer)
-        console.lof("Hair Bands will never go away though")
-        console.log("Rocket, yeah, satellite of love")
-    }
-}
-
 //walk function
 function walk() {
-    let makeChoice = readline.keyIn("Would you like to: 'w' = walk Quit 'q' = quit, or 'p' = View your profile ")
+    if (activePlayer.bandsVanquished === hairBands.length) {
+        nineteenNinety()
+    }
+
+    let makeChoice = readline.keyIn("Would you like to: 'w' = Walk, 'q' = Quit, or 'p' = View your profile ")
 
     if (makeChoice === 'p') {
         console.log(activePlayer)
@@ -103,12 +96,12 @@ function concert() {
             //defeat band
             if (activeBand.bandHp <= 0 && activePlayer.hp > 0) {
                 console.log("You've defeated " + activeBand.bandName + " and gained some strenth back!")
-                bandsVanquished = bandsVanquished + 1
+                activePlayer.bandsVanquished = activePlayer.bandsVanquished + 1
                 activePlayer.hp = activePlayer.hp + 15
                 console.log("Your hp is now " + activePlayer.hp)
                 console.log("You've also earned a piece of band swag---> " + activeBand.swag)
                 activePlayer.swagObtained.push(activeBand.swag)
-                console.log("Here's all your swag " + activePlayer.swagObtained)
+                // console.log("Here's all your swag " + activePlayer.swagObtained)
                 battling = !true
                 return walk()
             }
@@ -144,5 +137,12 @@ function concert() {
     }
 }
 
-startGame()
+//win game function
+function nineteenNinety() {
+    console.log("Congrats! You've defeated all the Hair Bands and can now escape to a new musical decade")
+    console.log(activePlayer)
+    console.lof("Hair Bands will never go away though")
+    console.log("Rocket, yeah, satellite of love")
+}
 
+startGame()
