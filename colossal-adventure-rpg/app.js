@@ -16,7 +16,7 @@ function startGame() {
 //constructor functions for player and bands
 function Player(playerName, hp, swagObtained, bandsVanquished) {
     this.playerName = name;
-    this.hp = 200;
+    this.hp = 75;
     this.swagObtained = [];
     this.bandsVanquished = 0
 }
@@ -139,10 +139,11 @@ function concert() {
 
 //win game function
 function nineteenNinety() {
-    console.log("Congrats! You've defeated all the Hair Bands and can now escape to a new musical decade")
+    console.log("Congrats! You've defeated enough Hair Bands and can now escape to a new musical decade")
     console.log(activePlayer)
     console.log("Hair Bands will never go away though")
     console.log("Rocket, yeah, satellite of love")
+    //how do I end the game
 }
 
 startGame()
