@@ -141,7 +141,7 @@ function concert() {
 function nineteenNinety() {
     console.log("Congrats! You've defeated all the Hair Bands and can now escape to a new musical decade")
     console.log(activePlayer)
-    console.lof("Hair Bands will never go away though")
+    console.log("Hair Bands will never go away though")
     console.log("Rocket, yeah, satellite of love")
 }
 
