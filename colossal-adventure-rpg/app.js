@@ -38,6 +38,15 @@ function startGame() {
     walk()
 }
 
+function nineteenNinety() {
+    if(activePlayer.bandsVanquished = hairBands.length) {
+        console.log("Congrats! You've defeated all the Hair Bands and can now escape to a new musical decade")
+        console.log(activePlayer)
+        console.lof("Hair Bands will never go away though")
+        console.log("Rocket, yeah, satellite of love")  
+    }
+}
+
 //Walk function
 function walk() {
     let makeChoice = readline.keyIn("Would you like to: 'w' = walk Quit 'q' = quit, or 'p' = View your profile ")
@@ -66,8 +75,7 @@ function walk() {
 
 //Encountering a band function
 function concert() {
-
-    //Activating a new band to encounter
+    //Activating a new band
     let activeBand = new Band(bandName, bandHp, swag)
     let bandName = hairBands[generateRandomNum(hairBands.length)]
 
