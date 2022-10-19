@@ -34,7 +34,7 @@ function Band(bandName, bandHp, swag) {
 //walk function
 function walk() {
     if (activePlayer.bandsVanquished === hairBands.length) {
-        nineteenNinety()
+        return nineteenNinety()
     }
 
     let makeChoice = readline.keyIn("Would you like to: 'w' = Walk, 'q' = Quit, or 'p' = View your profile ")
@@ -116,6 +116,7 @@ function concert() {
                 console.log("You got out rocked!" + activePlayer.name + " You're now stuck in the 80's forever...unless you can find Dr. Emmett Brown's Delorean :)")
                 console.log("GAME OVER")
                 battling = !true
+                process.exit()
                 //Game over
             }
         }
@@ -143,7 +144,7 @@ function nineteenNinety() {
     console.log(activePlayer)
     console.log("Hair Bands will never go away though")
     console.log("Rocket, yeah, satellite of love")
-    //how do I end the game
+    process.exit()
 }
 
 startGame()
