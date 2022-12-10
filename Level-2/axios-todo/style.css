@@ -3,9 +3,11 @@ body {
 }
 
 h1 {
-  font-size: 50px;
+  font-size: 40px;
   font-family: fantasy lighter;
   color: #000e2f;
+  margin-left: auto;
+  margin-right: auto;
   border-right: 4px solid #000; /*This will be the blinking cursor*/
   animation: cursor 1s infinite step-end, typing 15s infinite steps(16);
   white-space: nowrap;
@@ -40,13 +42,24 @@ h1 {
   } /*Text stays hidden*/
 }
 
-input {
+form {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+input,
+select {
   box-shadow: 4px 5px 4px 1px #e4002b;
   margin: 10px;
   padding: 3px;
   font-size: 25px;
   border-radius: 5px;
   border: white;
+}
+
+#descriptionInput {
+  width: 550px;
 }
 
 #submit {
@@ -73,10 +86,4 @@ input {
   transform: scale(1.2);
   -webkit-transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
   transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
-}
-
-form {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
 }

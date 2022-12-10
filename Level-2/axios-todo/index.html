@@ -8,10 +8,22 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1>Kevin's Todo List</h1>
+    <h1>Dreaded Todo List</h1>
     <form name="todo-form">
-      <input type="text" name="todo" placeholder="Todo?" />
-      <input type="text" name="description" placeholder="Description" />
+      <input type="text" name="todo" placeholder="Todo" />
+      <input
+        type="text"
+        name="description"
+        placeholder="Description"
+        id="descriptionInput"
+      />
+      <select name="priority-level" required>
+        <option value="" disabled selected hidden>Choose priority level</option>
+        <option value="3">High Priority</option>
+        <option value="2">Medium Priority</option>
+        <option value="1">Low Priority</option>
+        <option value="0">None</option>
+      </select>
       <button id="submit">Put it on the list</button>
     </form>
 
