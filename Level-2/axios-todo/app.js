@@ -1,4 +1,4 @@
-const axios = require("axios");
+// const axios = require("axios");
 
 // Function for getting todos from axios
 function getTodos() {
