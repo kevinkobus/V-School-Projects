@@ -24,30 +24,34 @@ function listTodos(data) {
     document.getElementById("todo-list").appendChild(container);
 
     const listItem = document.createElement("div");
+    listItem.textContent = `${data[i].title}`;
+    container.appendChild(listItem);
+
     const descrip = document.createElement("div");
+    descrip.textContent = `${data[i].description}`;
+    container.appendChild(descrip);
+
+    const price = document.createElement("div");
+    price.textContent = `${data[i].price}`;
+    container.appendChild(price);
+
     const checkBox = document.createElement("input");
     checkBox.type = "checkbox";
-
+    container.appendChild(checkBox);
     // how do i give the checkbox a label?
-
-    listItem.textContent = `${data[i].title} ${data[i].price}`;
-    descrip.textContent = `${data[i].description}`;
 
     const deleteBtn = document.createElement("button");
     deleteBtn.textContent = "Delete";
+    container.appendChild(deleteBtn);
+
     const editBtn = document.createElement("button");
     editBtn.textContent = "Edit";
+    container.appendChild(editBtn);
 
     if (data[i].completed) {
       checkBox.checked = true;
       listItem.style.textDecoration = "line-through";
     }
-
-    container.appendChild(listItem);
-    container.appendChild(descrip);
-    container.appendChild(checkBox);
-    container.appendChild(editBtn);
-    container.appendChild(deleteBtn);
   }
 
   checkBox.addEventListener("click", function (e) {
@@ -82,17 +86,17 @@ function listTodos(data) {
   editBtn.addEventListener("click", (e) => {
     console.log(`${data[i].title} has been edited`);
 
-    const editTodo = document.createElement("input");
-    listItem.appendChild(editTodo);
+    const editListItem = document.createElement("input");
+    listItem.appendChild(editListItem);
     editTodo.value = `${data[i].title}`;
 
     const editDescrip = document.createElement("input");
-    listItem.appendChild(editDescrip);
+    descrip.appendChild(editDescrip);
     editDescrip.value = `${data[i].description}`;
 
-    const editPriority = document.createElement("input");
-    listItem.appendChild(editPriority);
-    editPriority.value = `${data[i].price}`;
+    const editPrice = document.createElement("input");
+    price.appendChild(editPrice);
+    editPrice.value = `${data[i].price}`;
 
     //editSubmit button
     const editSubmitBtn = document.createElement("button");
@@ -100,13 +104,14 @@ function listTodos(data) {
     editSubmitBtn.textContent = "Submit Edit";
 
     editSubmitBtn.addEventListener("click", function (e) {
-      console.log(`pushed editSubmit button for ${data[i].title}`);
+      console.log(`${data[i].title} has been edited`);
 
       // edited list items
       const edits = {
-        title: editTodo.value,
-        price: editPriority.value,
+        title: editListItem.value,
+        price: editPrice.value,
         description: editDescrip.value,
+        completed: editCompleted.value,
       };
       axios
         .put(`https://api.vschool.io/kevinkobus/todo/${data[i]._id}`, edits)

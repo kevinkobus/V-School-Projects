@@ -9,7 +9,7 @@ h1 {
   margin-left: auto;
   margin-right: auto;
   border-right: 4px solid #000; /*This will be the blinking cursor*/
-  animation: cursor 1s infinite step-end, typing 15s infinite steps(16);
+  animation: cursor 1s infinite step-end, typing 15s infinite steps(20);
   white-space: nowrap;
   overflow: hidden;
 }
@@ -29,10 +29,10 @@ h1 {
     width: 0ch;
   } /*Text is hidden*/
   30% {
-    width: 16ch;
+    width: 20ch;
   } /*The enitre header will be typed out 1 character at a time*/
   80% {
-    width: 16ch;
+    width: 20ch;
   } /*Text stays visible*/
   90% {
     width: 0ch;
@@ -48,18 +48,13 @@ form {
   justify-content: center;
 }
 
-input,
-select {
+.form-input {
   box-shadow: 4px 5px 4px 1px #e4002b;
   margin: 10px;
   padding: 3px;
   font-size: 25px;
   border-radius: 5px;
   border: white;
-}
-
-#descriptionInput {
-  width: 550px;
 }
 
 #submit {
@@ -87,3 +82,4 @@ select {
   -webkit-transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
   transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
 }
+
