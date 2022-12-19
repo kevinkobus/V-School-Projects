@@ -1,5 +1,5 @@
 body {
-  background-color: #7c878e;
+  background-color: #474e52;
 }
 
 h1 {
@@ -83,3 +83,55 @@ form {
   transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
 }
 
+.todoItemList {
+  display: grid;
+  grid-template-columns: auto 1fr 2fr 1fr auto auto;
+  justify-content: space-between;
+  column-gap: 5px;
+  border: 2px solid white;
+  background-color: #bbc0c4;
+  padding: 5px;
+  font-size: 20px;
+}
+
+#todoItem {
+  grid-column: 2 / 3;
+  justify-self: center;
+  align-self: center;
+}
+
+#todoDescrip {
+  grid-column: 3 / 4;
+  justify-self: center;
+  align-self: center;
+}
+
+#todoPrice {
+  grid-column: 4 / 5;
+  justify-self: center;
+  align-self: center;
+}
+
+#todoCheckBox {
+  height: 25px;
+  width: 25px;
+  grid-column: 1 / 2;
+  justify-self: center;
+  align-self: center;
+}
+
+#todoDeleteBtn {
+  height: 25px;
+  width: 60px;
+  grid-column: 6 / 7;
+  justify-self: center;
+  align-self: center;
+}
+
+#todoEditBtn {
+  height: 25px;
+  width: 60px;
+  grid-column: 5 / 6;
+  justify-self: center;
+  align-self: center;
+}
