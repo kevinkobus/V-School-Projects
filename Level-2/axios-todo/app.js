@@ -22,116 +22,112 @@ function listTodos(data) {
   for (let i = 0; i < data.length; i++) {
     const container = document.createElement("div");
     document.getElementById("todo-list").appendChild(container);
-    container.className = 'todoItemList'
+    container.className = "todoItemList";
 
     const listItem = document.createElement("div");
     listItem.textContent = `ToDo: ${data[i].title}`;
     container.appendChild(listItem);
-    listItem.setAttribute("id", "todoItem")
+    listItem.setAttribute("id", "todoItem");
 
     const descrip = document.createElement("div");
     descrip.textContent = `Description: ${data[i].description}`;
     container.appendChild(descrip);
-    descrip.setAttribute("id", "todoDescrip")
+    descrip.setAttribute("id", "todoDescrip");
 
     const price = document.createElement("div");
     price.textContent = `Price: $${data[i].price}`;
     container.appendChild(price);
-    price.setAttribute("id", "todoPrice")
+    price.setAttribute("id", "todoPrice");
 
     const checkBox = document.createElement("input");
     checkBox.type = "checkbox";
     container.appendChild(checkBox);
-    checkBox.setAttribute("id", "todoCheckBox")
-    
-    // how do i give the checkbox a label?
+    checkBox.setAttribute("id", "todoCheckBox");
 
     const deleteBtn = document.createElement("button");
     deleteBtn.textContent = "Delete";
     container.appendChild(deleteBtn);
-    deleteBtn.setAttribute("id", "todoDeleteBtn")
+    deleteBtn.setAttribute("id", "todoDeleteBtn");
 
     const editBtn = document.createElement("button");
     editBtn.textContent = "Edit";
     container.appendChild(editBtn);
-    editBtn.setAttribute("id", "todoEditBtn")
-
-    
+    editBtn.setAttribute("id", "todoEditBtn");
 
     if (data[i].completed) {
       checkBox.checked = true;
       listItem.style.textDecoration = "line-through";
-    }
-  }
-
-  // checkbox eventlistener
-  checkBox.addEventListener("click", () => {
-    if (checkBox.checked) {
-      listItem.style.textDecoration = "line=though";
-      axios
-        .put(`https://api.vschool.io/kevinkobus/todo/${data[i]._id}`, {
-          completed: true,
-        })
-        .then((response) => console.log(response))
-        .catch((error) => console.log(error));
-    } else {
+    } else if (data[i].completed) {
+      checkBox.checked = false;
       listItem.style.textDecoration = "none";
-      axios
-        .put(`https://api.vschool.io/kevinkobus/todo/${data[i]._id}`, {
-          completed: false,
-        })
-        .then((response) => console.log(response))
-        .catch((error) => console.log(error));
     }
-  });
 
-  //   Delete button which does a delete request
-  deleteBtn.addEventListener("click", () => {
-    console.log(`${data[i].title} has been deleted`);
-    axios
-      .delete(`https://api.vschool.io/kevinkobus/todo/${data[i]._id}`)
-      .then((response) => getTodos())
-      .catch((error) => console.log(error));
-  });
+    // checkbox eventlistener
+    checkBox.addEventListener("click", (e) => {
+      if (checkBox.checked) {
+        axios
+          .put("https://api.vschool.io/kevinkobus/todo/" + data[i]._id, {
+            completed: false,
+          })
+          .then(getTodos())
+          .catch((error) => console.log(error));
+      } else if (!checkBox.checked) {
+        axios
+          .put("https://api.vschool.io/kevinkobus/todo/" + data[i]._id, {
+            completed: true,
+          })
+          .then(getTodos())
+          .catch((error) => console.log(error));
+      }
+    });
 
-  // Edit button which does a put request
-  //   editBtn.addEventListener("click", (e) => {
-  //     console.log(`${data[i].title} has been edited`);
+    //   Delete button which does a delete request
+    deleteBtn.addEventListener("click", (e) => {
+      axios
+        .delete("https://api.vschool.io/kevinkobous/todo/" + data[i]._id)
+        .then(getTodos())
+        .catch((error) => console.log(error));
+    });
 
-  //     const editListItem = document.createElement("input");
-  //     listItem.appendChild(editListItem);
-  //     editTodo.value = `${data[i].title}`;
+    // Edit button which does a put request
+    //   editBtn.addEventListener("click", (e) => {
+    //     console.log(`${data[i].title} has been edited`);
 
-  //     const editDescrip = document.createElement("input");
-  //     descrip.appendChild(editDescrip);
-  //     editDescrip.value = `${data[i].description}`;
+    //     const editListItem = document.createElement("input");
+    //     listItem.appendChild(editListItem);
+    //     editTodo.value = `${data[i].title}`;
 
-  //     const editPrice = document.createElement("input");
-  //     price.appendChild(editPrice);
-  //     editPrice.value = `${data[i].price}`;
+    //     const editDescrip = document.createElement("input");
+    //     descrip.appendChild(editDescrip);
+    //     editDescrip.value = `${data[i].description}`;
 
-  //     //editSubmit button
-  //     const editSubmitBtn = document.createElement("button");
-  //     listItem.append(editSubmitBtn);
-  //     editSubmitBtn.textContent = "Submit Edit";
+    //     const editPrice = document.createElement("input");
+    //     price.appendChild(editPrice);
+    //     editPrice.value = `${data[i].price}`;
 
-  //     editSubmitBtn.addEventListener("click", function (e) {
-  //       console.log(`${data[i].title} has been edited`);
+    //     //editSubmit button
+    //     const editSubmitBtn = document.createElement("button");
+    //     listItem.append(editSubmitBtn);
+    //     editSubmitBtn.textContent = "Submit Edit";
 
-  //       // edited list items
-  //       const edits = {
-  //         title: editListItem.value,
-  //         price: editPrice.value,
-  //         description: editDescrip.value,
-  //         completed: editCompleted.value,
+    //     editSubmitBtn.addEventListener("click", function (e) {
+    //       console.log(`${data[i].title} has been edited`);
 
-  //       };
-  //       axios
-  //         .put(`https://api.vschool.io/kevinkobus/todo/${data[i]._id}`, edits)
-  //         .then((response) => getTodos())
-  //         .catch((error) => console.log(error));
-  //     });
-  //   });
+    //       // edited list items
+    //       const edits = {
+    //         title: editListItem.value,
+    //         price: editPrice.value,
+    //         description: editDescrip.value,
+    //         completed: editCompleted.value,
+
+    //       };
+    //       axios
+    //         .put(`https://api.vschool.io/kevinkobus/todo/${data[i]._id}`, edits)
+    //         .then((response) => getTodos())
+    //         .catch((error) => console.log(error));
+    //     });
+    //   });
+  }
 }
 
 getTodos();
