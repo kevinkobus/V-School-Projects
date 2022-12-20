@@ -84,7 +84,7 @@ function listTodos(data) {
     //   Delete button which does a delete request
     deleteBtn.addEventListener("click", (e) => {
       axios
-        .delete("https://api.vschool.io/kevinkobous/todo/" + data[i]._id)
+        .delete("https://api.vschool.io/kevinkobus/todo/" + data[i]._id)
         .then(getTodos())
         .catch((error) => console.log(error));
     });
