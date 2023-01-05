@@ -3,12 +3,13 @@ import React from "react";
 function Info() {
   return (
     <div className="info">
-      {/* <img
+      <img
         src="kermit-headshot.jpg"
         alt="headshot"
-        width="50px"
+        width="550px"
+        height="400px"
         className="head-shot"
-      /> */}
+      />
       <h1 className="name">Kermit The Frog</h1>
       <h3 className="title">Frontend Pond Dweller</h3>
       <h4 className="website">kermit.website</h4>
